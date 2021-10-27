@@ -1,5 +1,9 @@
 package com.switchfullyselfevaluation.eurder.domain.user;
 
+import com.switchfullyselfevaluation.eurder.exceptions.InvalidUserException;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.util.UUID;
 
 public abstract class User {
@@ -12,9 +16,9 @@ public abstract class User {
 
     public User(String firstName, String lastName, String email, Address address, String phoneNumber) {
         this.uuid = UUID.randomUUID().toString();
-        this.firstName = firstName;
+        this.firstName = firstNameNotNull(firstName);
         this.lastName = lastName;
-        this.email = email;
+        this.email = isValidEmailAddress(email);
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
@@ -41,5 +45,27 @@ public abstract class User {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+
+
+
+
+    public String firstNameNotNull(String firstName) {
+        if (firstName == null) {
+            throw new IllegalArgumentException("First name cant be null.");
+        } else {
+            return lastName;
+        }
+    }
+
+    public String isValidEmailAddress(String email) {
+        try {
+            InternetAddress emailAddress = new InternetAddress(email);
+            emailAddress.validate();
+        } catch (AddressException ex) {
+            throw new InvalidUserException("Not a valid email-address");
+        }
+        return email;
     }
 }
