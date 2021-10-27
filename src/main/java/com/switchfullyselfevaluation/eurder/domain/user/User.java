@@ -1,6 +1,8 @@
-package com.switchfullyselfevaluation.eurder.domain;
+package com.switchfullyselfevaluation.eurder.domain.user;
 
-public class User {
+import java.util.UUID;
+
+public abstract class User {
     private final String uuid;
     private final String firstName;
     private final String lastName;
@@ -8,8 +10,8 @@ public class User {
     private final Address address;
     private final String phoneNumber;
 
-    public User(String uuid, String firstName, String lastName, String email, Address address, String phoneNumber) {
-        this.uuid = uuid;
+    public User(String firstName, String lastName, String email, Address address, String phoneNumber) {
+        this.uuid = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

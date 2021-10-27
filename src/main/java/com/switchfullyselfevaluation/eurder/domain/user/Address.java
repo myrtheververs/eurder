@@ -1,4 +1,4 @@
-package com.switchfullyselfevaluation.eurder.domain;
+package com.switchfullyselfevaluation.eurder.domain.user;
 
 public class Address {
 
