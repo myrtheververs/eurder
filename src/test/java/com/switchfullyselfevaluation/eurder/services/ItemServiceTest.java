@@ -25,18 +25,23 @@ class ItemServiceTest {
     private UserRepository userRepository;
     private Address address;
     private Customer customer;
-   // private Admin admin;
+    private Admin admin;
 
     @BeforeEach
     public void setUp() {
         userRepository = new UserRepository();
         address = new Address("Hoofdstraat, 1", "1000", "Brussel");
         customer = new Customer("Tom", "Degrote", "tom@degrote.be", address, "0478123654");
+
+        admin = new Admin("An", "Min", "anmin@admin.com", address, "0478556654");
+
         userRepository.createCustomer(customer);
+        userRepository.addUser(admin);
+
         itemService = new ItemService(new ItemRepository(), new ItemMapper(), new UserService(userRepository, new UserMapper()));
     }
 
-
+    //authorization create item
     @DisplayName("When a customer adds item, throws NoAuthorizationException.")
     @Test
     void whenCustomerAddsItem_ThenAnExceptionIsThrown() {
@@ -46,10 +51,29 @@ class ItemServiceTest {
 
     @DisplayName("When a customer id / customer does not exist, throws UserDoesNotExistException.")
     @Test
-    void whenCustomerDoesNotExist_thenUserDoesNotExistException() {
+    void givenCustomerDoesNotExist_whenAddsItem_thenUserDoesNotExistExceptionThrown() {
         CreateItemDTO createItemDTO = new CreateItemDTO();
         Assertions.assertThrows(UserDoesNotExistException.class, () -> itemService.createItem(createItemDTO, "456"));
     }
+
+
+    //valid fields create item
+     @DisplayName("When admin creates item with no name, throws IllegalArgumentException")
+    @Test
+    void givenAdminCreatesItem_whenItemNameIsNull_thenExceptionThrown() {
+        CreateItemDTO createItemDTO = new CreateItemDTO();
+        createItemDTO.setName(null);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemService.createItem(createItemDTO, admin.getUuid()));
+    }
+
+    @DisplayName("When admin creates item with no price, throws IllegalArgumentException")
+    @Test
+    void givenAdminCreatesItem_whenItemPriceIsNull_thenExceptionThrown() {
+        CreateItemDTO createItemDTO = new CreateItemDTO();
+        createItemDTO.setPrice(null);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemService.createItem(createItemDTO, admin.getUuid()));
+    }
+
 
 
 

@@ -10,8 +10,21 @@ public class Order {
     private Customer customer;
     private Set<ItemGroup> itemGroupSet;
 
+    public Order(String uuid, Customer customer, Set<ItemGroup> itemGroupSet) {
+        this.uuid = uuid;
+        this.customer = customer;
+        this.itemGroupSet = itemGroupSet;
+    }
 
+    public String getUuid() {
+        return uuid;
+    }
 
+    public Customer getCustomer() {
+        return customer;
+    }
 
-
+    public Set<ItemGroup> getItemGroupSet() {
+        return itemGroupSet;
+    }
 }

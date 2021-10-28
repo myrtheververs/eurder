@@ -25,13 +25,12 @@ public class ItemController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@RequestHeader(value = "uuid", required = true) String uuid,
+    public void createItem(@RequestHeader(value = "uuid", required = true) String uuidUser,
                            @RequestBody CreateItemDTO createItemDTO) {
-        try {
-            itemService.createItem(createItemDTO, uuid);
-            logger.info("Controller: creating new item");
-        } catch (UserDoesNotExistException | NoAuthorizationException e) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
-        }
+
+            logger.info("Controller: trying to create new item");
+            itemService.createItem(createItemDTO, uuidUser);
+            logger.info("Controller: item created");
+
     }
 }

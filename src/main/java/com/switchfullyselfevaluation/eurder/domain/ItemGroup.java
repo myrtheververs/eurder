@@ -1,5 +1,7 @@
 package com.switchfullyselfevaluation.eurder.domain;
 
+import com.switchfullyselfevaluation.eurder.domain.repositories.ItemRepository;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -11,12 +13,19 @@ public class ItemGroup {
     private final Price price;
     private final LocalDate shippingDate;
 
+    private ItemRepository itemRepository;
+
     public ItemGroup(String uuid, String itemId, int amountToOrder, Price price, LocalDate shippingDate) {
         this.uuid = UUID.randomUUID().toString();
         this.itemId = itemId;
         this.amountToOrder = amountToOrder;
-        this.price = price;
-        this.shippingDate = shippingDate;
+        this.price = getItemById(itemId).getPrice();
+        this.shippingDate = calculateShippingDate();
+    }
+
+    private Item getItemById(String itemId) {
+        Item item = itemRepository.getItemById(itemId);
+        return item;
     }
 
     public String getUuid() {
@@ -39,7 +48,11 @@ public class ItemGroup {
         return shippingDate;
     }
 
-/*    public LocalDate calculateShippingDate() {
-
-    }*/
+    public LocalDate calculateShippingDate() {
+        if (getItemById(itemId).getAmountInStock() < amountToOrder) {
+            return LocalDate.now().plusDays(7);
+        } else {
+            return LocalDate.now().plusDays(1);
+        }
+    }
 }

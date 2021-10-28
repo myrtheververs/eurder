@@ -64,6 +64,7 @@ public abstract class User {
         return userRole;
     }
 
+
     public String firstNameNotNull(String firstName) {
         if (firstName == null) {
             throw new IllegalArgumentException("First name cant be null.");

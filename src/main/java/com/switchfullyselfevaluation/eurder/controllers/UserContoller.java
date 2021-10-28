@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -24,7 +25,15 @@ public class UserContoller {
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void createCustomer(@RequestBody CreateUserDTO createUserDTO) {
-        userService.createCustomer(createUserDTO);
-        logger.info("Controller: creating new customer");
+        try {
+            logger.info("Controller: trying to create new customer");
+            userService.createCustomer(createUserDTO);
+            logger.info("Controller: new customer created");
+        } catch (IllegalArgumentException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
+
+
+
     }
 }

@@ -4,6 +4,7 @@ import com.switchfullyselfevaluation.eurder.domain.user.Address;
 import com.switchfullyselfevaluation.eurder.domain.user.Admin;
 import com.switchfullyselfevaluation.eurder.domain.user.Customer;
 import com.switchfullyselfevaluation.eurder.domain.user.User;
+import com.switchfullyselfevaluation.eurder.services.dtos.CreateUserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -32,11 +33,17 @@ public class UserRepository {
 
 
     public void createCustomer(Customer customer) {
-        usersById.put(customer.getUuid(), customer);
+       usersById.put(customer.getUuid(), customer);
     }
 
 
 
+
+
+
+    public void addUser(User user) {
+        usersById.put(user.getUuid(), user);
+    }
 
     public boolean contains(String uuidUser) {
         return usersById.containsKey(uuidUser);

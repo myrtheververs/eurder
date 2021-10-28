@@ -20,6 +20,10 @@ public class ItemRepository {
         itemsById.put(item.getUuid(), item);
     }
 
+    public Item getItemById(String id) {
+        return itemsById.get(id);
+    }
+
 
 
 

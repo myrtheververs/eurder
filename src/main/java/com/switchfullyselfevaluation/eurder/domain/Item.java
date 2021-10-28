@@ -12,9 +12,9 @@ public class Item {
 
     public Item(String name, String description, Price price, int amountInStock) {
         this.uuid = UUID.randomUUID().toString();
-        this.name = stringNotNull(name);
+        this.name = validateStringNotNull(name);
         this.description = description;
-        this.price = priceNotNull(price);
+        this.price = validatePriceNotNull(price);
         this.amountInStock = amountInStock;
     }
 
@@ -38,7 +38,11 @@ public class Item {
         return amountInStock;
     }
 
-    public String stringNotNull(String field) {
+
+
+
+
+    public String validateStringNotNull(String field) {
         if (field == null) {
             throw new IllegalArgumentException("Can't be null.");
         } else {
@@ -46,7 +50,7 @@ public class Item {
         }
     }
 
-    public Price priceNotNull(Price price) {
+    public Price validatePriceNotNull(Price price) {
         if(price == null) {
             throw new IllegalArgumentException("Price can't be null");
         } else {
