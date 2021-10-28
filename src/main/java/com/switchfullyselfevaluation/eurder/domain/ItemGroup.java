@@ -5,19 +5,41 @@ import java.util.UUID;
 
 public class ItemGroup {
 
-    private String uuid;
-    private String itemId;
-    private int amount;
-    private Price price;
-    private LocalDate shippingDate;
+    private final String uuid;
+    private final String itemId;
+    private final int amountToOrder;
+    private final Price price;
+    private final LocalDate shippingDate;
 
-    public ItemGroup(String uuid, String itemId, int amount, Price price, LocalDate shippingDate) {
+    public ItemGroup(String uuid, String itemId, int amountToOrder, Price price, LocalDate shippingDate) {
         this.uuid = UUID.randomUUID().toString();
         this.itemId = itemId;
-        this.amount = amount;
+        this.amountToOrder = amountToOrder;
         this.price = price;
         this.shippingDate = shippingDate;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
 
+    public String getItemId() {
+        return itemId;
+    }
+
+    public int getAmountToOrder() {
+        return amountToOrder;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public LocalDate getShippingDate() {
+        return shippingDate;
+    }
+
+/*    public LocalDate calculateShippingDate() {
+
+    }*/
 }

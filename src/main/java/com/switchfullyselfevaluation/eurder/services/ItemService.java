@@ -20,7 +20,6 @@ public class ItemService {
     private final UserService userService;
 
 
-
     @Autowired
     public ItemService(ItemRepository itemRepository, ItemMapper itemMapper, UserService userService) {
         this.itemRepository = itemRepository;
@@ -31,15 +30,14 @@ public class ItemService {
     public void createItem(CreateItemDTO createItemDTO, String uuid) {
         User user = userService.getUserById(uuid);
 
+        if(userService.getUserById(uuid) == null) {
+            throw new UserDoesNotExistException("User not found");
+        }
         if(user.getUserRole() != UserRole.ADMIN) {
             throw new NoAuthorizationException("You have no authorization to add an item");  //ok
         }
 
-        if(userService.getUserById(uuid) == null) {
-            throw new UserDoesNotExistException("User not found");
-        }
         itemRepository.addItem(itemMapper.toItem(createItemDTO));   //ok
-
 
     }
 

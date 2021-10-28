@@ -30,7 +30,6 @@ class UserRepositoryTest {
         customer = new Customer("Tom", "Degrote", "tom@degrote.be", address1, "0478123654");
         customer2 = new Customer("Martine", "Maartens", "martine@maartens.com", address2, "0445002005");
 
-        //...
     }
 
     @Test
