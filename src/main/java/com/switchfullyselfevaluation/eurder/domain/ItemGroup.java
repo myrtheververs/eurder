@@ -48,11 +48,16 @@ public class ItemGroup {
         return shippingDate;
     }
 
+
     public LocalDate calculateShippingDate() {
-        if (getItemById(itemId).getAmountInStock() < amountToOrder) {
+        if (isInStock()) {
             return LocalDate.now().plusDays(7);
         } else {
             return LocalDate.now().plusDays(1);
         }
+    }
+
+    public boolean isInStock() {
+        return getItemById(itemId).getAmountInStock() - amountToOrder >= 0;
     }
 }

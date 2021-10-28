@@ -32,17 +32,16 @@ public class UserRepository {
     }
 
 
-    public void createCustomer(Customer customer) {
+    public Customer createCustomer(Customer customer) {
        usersById.put(customer.getUuid(), customer);
+       return customer;
     }
 
 
 
-
-
-
-    public void addUser(User user) {
+    public User addUser(User user) {
         usersById.put(user.getUuid(), user);
+        return user;
     }
 
     public boolean contains(String uuidUser) {

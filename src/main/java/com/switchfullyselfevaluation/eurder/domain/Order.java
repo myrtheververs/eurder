@@ -3,6 +3,7 @@ package com.switchfullyselfevaluation.eurder.domain;
 import com.switchfullyselfevaluation.eurder.domain.user.Customer;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class Order {
 
@@ -10,8 +11,8 @@ public class Order {
     private Customer customer;
     private Set<ItemGroup> itemGroupSet;
 
-    public Order(String uuid, Customer customer, Set<ItemGroup> itemGroupSet) {
-        this.uuid = uuid;
+    public Order(Customer customer, Set<ItemGroup> itemGroupSet) {
+        this.uuid = UUID.randomUUID().toString();
         this.customer = customer;
         this.itemGroupSet = itemGroupSet;
     }

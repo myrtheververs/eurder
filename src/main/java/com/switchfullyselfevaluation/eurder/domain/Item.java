@@ -42,6 +42,8 @@ public class Item {
 
 
 
+
+
     public String validateStringNotNull(String field) {
         if (field == null) {
             throw new IllegalArgumentException("Can't be null.");

@@ -27,10 +27,10 @@ public class ItemService {
         this.userService = userService;
     }
 
-    public void createItem(CreateItemDTO createItemDTO, String uuid) {
-        User user = userService.getUserById(uuid);
+    public void createItem(CreateItemDTO createItemDTO, String uuidUser) {
+        User user = userService.getUserById(uuidUser);
 
-        if(userService.getUserById(uuid) == null) {
+        if(userService.getUserById(uuidUser) == null) {
             throw new UserDoesNotExistException("User not found");
         }
         if(user.getUserRole() != UserRole.ADMIN) {
