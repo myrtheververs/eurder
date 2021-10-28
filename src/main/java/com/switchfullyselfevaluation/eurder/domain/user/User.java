@@ -7,12 +7,25 @@ import javax.mail.internet.InternetAddress;
 import java.util.UUID;
 
 public abstract class User {
+
     private final String uuid;
     private final String firstName;
     private final String lastName;
     private final String email;
     private final Address address;
     private final String phoneNumber;
+    private UserRole userRole;
+
+
+    public User(String firstName, String lastName, String email, Address address, String phoneNumber ,UserRole userRole) {
+        this.uuid = UUID.randomUUID().toString();
+        this.firstName = firstNameNotNull(firstName);
+        this.lastName = lastName;
+        this.email = isValidEmailAddress(email);
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.userRole = userRole;
+    }
 
     public User(String firstName, String lastName, String email, Address address, String phoneNumber) {
         this.uuid = UUID.randomUUID().toString();
@@ -47,9 +60,9 @@ public abstract class User {
         return phoneNumber;
     }
 
-
-
-
+    public UserRole getUserRole() {
+        return userRole;
+    }
 
     public String firstNameNotNull(String firstName) {
         if (firstName == null) {

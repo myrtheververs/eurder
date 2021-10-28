@@ -1,6 +1,7 @@
 package com.switchfullyselfevaluation.eurder.services;
 
 import com.switchfullyselfevaluation.eurder.domain.repositories.UserRepository;
+import com.switchfullyselfevaluation.eurder.domain.user.User;
 import com.switchfullyselfevaluation.eurder.services.dtos.CreateUserDTO;
 import com.switchfullyselfevaluation.eurder.services.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,10 @@ public class UserService {
     public void createCustomer(CreateUserDTO createUserDTO) {
         userRepository.createCustomer(userMapper.toCustomer(createUserDTO));
     }
+
+    public User getUserById(String uuid) {
+        return userRepository.getUsersById().get(uuid);
+    }
+
+
 }

@@ -25,6 +25,6 @@ public class UserContoller {
     @ResponseStatus(HttpStatus.CREATED)
     public void createCustomer(@RequestBody CreateUserDTO createUserDTO) {
         userService.createCustomer(createUserDTO);
-        logger.info("Controller: New customer registered/created");
+        logger.info("Controller: creating new customer");
     }
 }

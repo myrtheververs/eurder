@@ -1,6 +1,7 @@
 package com.switchfullyselfevaluation.eurder.services.mappers;
 
 import com.switchfullyselfevaluation.eurder.domain.user.Customer;
+import com.switchfullyselfevaluation.eurder.domain.user.UserRole;
 import com.switchfullyselfevaluation.eurder.services.dtos.CreateUserDTO;
 import org.springframework.stereotype.Component;
 
