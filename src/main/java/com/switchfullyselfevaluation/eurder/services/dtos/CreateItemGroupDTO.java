@@ -10,6 +10,15 @@ public class CreateItemGroupDTO {
     private int amountToOrder;
 
 
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public int getAmountToOrder() {
+        return amountToOrder;
+    }
+
     public CreateItemGroupDTO setItemId(String itemId) {
         this.itemId = itemId;
         return this;
@@ -18,13 +27,5 @@ public class CreateItemGroupDTO {
     public CreateItemGroupDTO setAmountToOrder(int amountToOrder) {
         this.amountToOrder = amountToOrder;
         return this;
-    }
-
-    public String getItemId() {
-        return itemId;
-    }
-
-    public int getAmountToOrder() {
-        return amountToOrder;
     }
 }

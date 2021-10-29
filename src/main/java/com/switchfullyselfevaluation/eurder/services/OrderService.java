@@ -34,6 +34,6 @@ public class OrderService {
             throw new NoAuthorizationException("You have to be a customer to make an order");
         }
 
-        orderRepository.addOrder(orderMapper.toOrder(createOrderDTO));
+        orderRepository.addOrder(orderMapper.toOrder(uuidUser, createOrderDTO));
     }
 }

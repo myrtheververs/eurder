@@ -69,7 +69,7 @@ public abstract class User {
         if (firstName == null) {
             throw new IllegalArgumentException("First name cant be null.");
         } else {
-            return lastName;
+            return firstName;
         }
     }
 

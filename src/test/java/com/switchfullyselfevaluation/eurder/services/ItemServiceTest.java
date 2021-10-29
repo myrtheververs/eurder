@@ -8,15 +8,13 @@ import com.switchfullyselfevaluation.eurder.domain.user.Customer;
 import com.switchfullyselfevaluation.eurder.exceptions.NoAuthorizationException;
 import com.switchfullyselfevaluation.eurder.exceptions.UserDoesNotExistException;
 import com.switchfullyselfevaluation.eurder.services.dtos.CreateItemDTO;
+import com.switchfullyselfevaluation.eurder.services.mappers.CreateItemMapper;
 import com.switchfullyselfevaluation.eurder.services.mappers.ItemMapper;
 import com.switchfullyselfevaluation.eurder.services.mappers.UserMapper;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ItemServiceTest {
 
@@ -38,7 +36,7 @@ class ItemServiceTest {
         userRepository.createCustomer(customer);
         userRepository.addUser(admin);
 
-        itemService = new ItemService(new ItemRepository(), new ItemMapper(), new UserService(userRepository, new UserMapper()));
+        itemService = new ItemService(new ItemRepository(), new ItemMapper(), new CreateItemMapper(),  new UserService(userRepository, new UserMapper()));
     }
 
     //authorization create item

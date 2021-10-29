@@ -2,8 +2,8 @@ package com.switchfullyselfevaluation.eurder.domain;
 
 public class Price {
 
-    private final double value;
-    private final String currency;
+    private double value;
+    private String currency;
 
     public Price(double value, String currency) {
         this.value = value;
@@ -16,5 +16,14 @@ public class Price {
 
     public String getCurrency() {
         return currency;
+    }
+
+    public Price setValue(double value) {
+        this.value = value;
+        return this;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }

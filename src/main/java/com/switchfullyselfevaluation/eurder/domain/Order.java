@@ -1,19 +1,20 @@
 package com.switchfullyselfevaluation.eurder.domain;
 
-import com.switchfullyselfevaluation.eurder.domain.user.Customer;
-
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 public class Order {
 
     private String uuid;
-    private Customer customer;
-    private Set<ItemGroup> itemGroupSet;
+    private String customerId;
+    private List<ItemGroup> itemGroupSet;
+    private Price totalPrice;
 
-    public Order(Customer customer, Set<ItemGroup> itemGroupSet) {
+    public Order(String customerId, List<ItemGroup> itemGroupSet, Price totalPrice) {
+        this.totalPrice = totalPrice;
+
         this.uuid = UUID.randomUUID().toString();
-        this.customer = customer;
+        this.customerId = customerId;
         this.itemGroupSet = itemGroupSet;
     }
 
@@ -21,11 +22,11 @@ public class Order {
         return uuid;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public Set<ItemGroup> getItemGroupSet() {
+    public List<ItemGroup> getItemGroupSet() {
         return itemGroupSet;
     }
 }
