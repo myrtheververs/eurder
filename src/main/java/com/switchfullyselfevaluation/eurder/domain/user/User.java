@@ -73,6 +73,7 @@ public abstract class User {
         }
     }
 
+    //from internet, taken from digybooky project
     public String isValidEmailAddress(String email) {
         try {
             InternetAddress emailAddress = new InternetAddress(email);

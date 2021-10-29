@@ -17,6 +17,7 @@ public class CreateOrderDTO {
     public Customer getCustomer() {
         return customer;
     }
+
     public Set<ItemGroup> getItemGroupSet() {
         return itemGroupSet;
     }

@@ -21,5 +21,10 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     protected void noAuthorizationException(NoAuthorizationException ex, HttpServletResponse response) throws IOException {
         response.sendError(FORBIDDEN.value(), ex.getMessage());
     }
+
+    @ExceptionHandler(NotACustomerException.class)
+    protected void notACustomerException(NotACustomerException ex, HttpServletResponse response) throws IOException {
+        response.sendError(FORBIDDEN.value(), ex.getMessage());
+    }
 }
 

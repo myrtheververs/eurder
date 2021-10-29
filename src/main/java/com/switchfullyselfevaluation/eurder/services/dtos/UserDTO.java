@@ -2,7 +2,7 @@ package com.switchfullyselfevaluation.eurder.services.dtos;
 
 import com.switchfullyselfevaluation.eurder.domain.user.Address;
 
-public class CreateUserDTO {
+public class UserDTO {
     private String firstName;
     private String lastName;
     private String email;
@@ -29,32 +29,29 @@ public class CreateUserDTO {
         return phoneNumber;
     }
 
-    public CreateUserDTO setFirstName(String firstName) {
+
+    public UserDTO setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public CreateUserDTO setLastName(String lastName) {
+    public UserDTO setLastName(String lastName) {
         this.lastName = lastName;
         return this;
-
     }
 
-    public CreateUserDTO setEmail(String email) {
+    public UserDTO setEmail(String email) {
         this.email = email;
         return this;
-
     }
 
-    public CreateUserDTO setAddress(Address address) {
+    public UserDTO setAddress(Address address) {
         this.address = address;
         return this;
-
     }
 
-    public CreateUserDTO setPhoneNumber(String phoneNumber) {
+    public UserDTO setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
-
     }
 }

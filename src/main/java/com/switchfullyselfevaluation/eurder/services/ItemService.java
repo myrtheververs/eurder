@@ -34,10 +34,10 @@ public class ItemService {
             throw new UserDoesNotExistException("User not found");
         }
         if(user.getUserRole() != UserRole.ADMIN) {
-            throw new NoAuthorizationException("You have no authorization to add an item");  //ok
+            throw new NoAuthorizationException("You have no authorization to add an item");
         }
 
-        itemRepository.addItem(itemMapper.toItem(createItemDTO));   //ok
+        itemRepository.addItem(itemMapper.toItem(createItemDTO));
 
     }
 
