@@ -7,6 +7,8 @@ import com.switchfullyselfevaluation.eurder.domain.Price;
 import com.switchfullyselfevaluation.eurder.domain.repositories.ItemRepository;
 import com.switchfullyselfevaluation.eurder.services.ItemService;
 import com.switchfullyselfevaluation.eurder.services.dtos.CreateOrderDTO;
+import com.switchfullyselfevaluation.eurder.services.dtos.ItemGroupDTO;
+import com.switchfullyselfevaluation.eurder.services.dtos.OrderDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -40,4 +42,24 @@ public class OrderMapper {
 
         return new Order(customerId, itemGroups, totalPrice);
     }
+
+    public OrderDTO toDTO(Order order) {
+        return new OrderDTO(
+                order.getUuid(),
+                order.getItemGroupSet().stream()
+                        .map(this::toDTO)
+                        .collect(Collectors.toList()),
+                order.getTotalPrice()
+        );
+    }
+
+
+    private ItemGroupDTO toDTO(ItemGroup itemGroup) {
+        return new ItemGroupDTO(
+                itemGroup.getItemId(),
+                itemGroup.getAmountToOrder(),
+                itemGroup.getShippingDate());
+    }
+
+
 }

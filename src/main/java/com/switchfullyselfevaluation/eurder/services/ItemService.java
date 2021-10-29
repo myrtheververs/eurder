@@ -53,21 +53,13 @@ public class ItemService {
     }
 
 
-
-//
     public List<ItemDTO> getAllItems() {
-       // assertAdminId(uuidUser);
 
         return itemRepository.getAll().stream()
                 .map(itemMapper::toItemDTO)
                 .collect(Collectors.toList());
     }
 
-    private void assertAdminId(String uuidUser) {
-        if(userService.getUserById(uuidUser).getUserRole() != UserRole.ADMIN) {
-            throw new NoAuthorizationException("No admin rights");
-        }
-    }
 
 /*    public boolean isInStock(String itemId) {
         return getItemById(itemId).getAmountInStock() - amountToOrder >= 0;

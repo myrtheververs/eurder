@@ -1,5 +1,7 @@
 package com.switchfullyselfevaluation.eurder.services.dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDate;
 
 public class ItemGroupDTO {
@@ -8,6 +10,12 @@ public class ItemGroupDTO {
     private int amountToOrder;
     private LocalDate shippingDate;
 
+    @JsonCreator
+    public ItemGroupDTO(String itemId, int amountToOrder, LocalDate shippingDate) {
+        this.itemId = itemId;
+        this.amountToOrder = amountToOrder;
+        this.shippingDate = shippingDate;
+    }
 
     public ItemGroupDTO setItemId(String itemId) {
         this.itemId = itemId;

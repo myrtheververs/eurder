@@ -8,7 +8,6 @@ public class ItemGroup {
 
     private final String itemId;
     private final int amountToOrder;
-
     private final LocalDate shippingDate;
 
     private ItemRepository itemRepository;

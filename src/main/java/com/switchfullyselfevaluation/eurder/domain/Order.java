@@ -29,4 +29,8 @@ public class Order {
     public List<ItemGroup> getItemGroupSet() {
         return itemGroupSet;
     }
+
+    public Price getTotalPrice() {
+        return totalPrice;
+    }
 }
