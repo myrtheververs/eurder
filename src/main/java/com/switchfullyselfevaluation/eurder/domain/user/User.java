@@ -1,25 +1,24 @@
 package com.switchfullyselfevaluation.eurder.domain.user;
 
-import com.switchfullyselfevaluation.eurder.exceptions.InvalidUserException;
+import com.switchfullyselfevaluation.eurder.exception.InvalidUserException;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import java.util.UUID;
 
-public abstract class User {
+public class User {
 
-    private final String uuid;
+    private final String id;
     private final String firstName;
     private final String lastName;
     private final String email;
     private final Address address;
     private final String phoneNumber;
-    private UserRole userRole;
+    private final UserRole userRole;
 
-
-    public User(String firstName, String lastName, String email, Address address, String phoneNumber ,UserRole userRole) {
-        this.uuid = UUID.randomUUID().toString();
-        this.firstName = firstNameNotNull(firstName);
+    public User(String firstName, String lastName, String email, Address address, String phoneNumber, UserRole userRole) {
+        this.id = UUID.randomUUID().toString();
+        this.firstName = isValidFirstName(firstName);
         this.lastName = lastName;
         this.email = isValidEmailAddress(email);
         this.address = address;
@@ -27,17 +26,19 @@ public abstract class User {
         this.userRole = userRole;
     }
 
+    //constructor without userrole -> register customer : STORY 1
     public User(String firstName, String lastName, String email, Address address, String phoneNumber) {
-        this.uuid = UUID.randomUUID().toString();
-        this.firstName = firstNameNotNull(firstName);
+        this.id = UUID.randomUUID().toString();
+        this.firstName = isValidFirstName(firstName);
         this.lastName = lastName;
         this.email = isValidEmailAddress(email);
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.userRole = UserRole.CUSTOMER;
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -65,21 +66,25 @@ public abstract class User {
     }
 
 
-    public String firstNameNotNull(String firstName) {
-        if (firstName == null) {
-            throw new IllegalArgumentException("First name cant be null.");
+
+
+    //helper methods
+
+    public String isValidFirstName(String firstName) {
+        if (firstName == null || firstName.isBlank()) {
+            throw new InvalidUserException("Invalid first name: cant be null or blank");
         } else {
             return firstName;
         }
     }
 
-    //from internet, taken from digybooky project
+    //from internet, taken from digybooky project where we used it as well, unknown source
     public String isValidEmailAddress(String email) {
         try {
             InternetAddress emailAddress = new InternetAddress(email);
             emailAddress.validate();
         } catch (AddressException ex) {
-            throw new InvalidUserException("Not a valid email-address");
+            throw new InvalidUserException("Invalid email-address");
         }
         return email;
     }

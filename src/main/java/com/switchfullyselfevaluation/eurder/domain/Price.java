@@ -3,7 +3,7 @@ package com.switchfullyselfevaluation.eurder.domain;
 public class Price {
 
     private double value;
-    private String currency;
+    private final String currency;
 
     public Price(double value, String currency) {
         this.value = value;
@@ -18,12 +18,12 @@ public class Price {
         return currency;
     }
 
-    public Price setValue(double value) {
-        this.value = value;
-        return this;
-    }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+
+
+    //STORY 3: total price for ordering as customer
+
+    public void setValue(double value) {
+        this.value = value;
     }
 }

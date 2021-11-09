@@ -1,17 +1,15 @@
 package com.switchfullyselfevaluation.eurder.controllers;
 
-import com.switchfullyselfevaluation.eurder.exceptions.NoAuthorizationException;
-import com.switchfullyselfevaluation.eurder.exceptions.UserDoesNotExistException;
-import com.switchfullyselfevaluation.eurder.services.ItemService;
-import com.switchfullyselfevaluation.eurder.services.dtos.CreateItemDTO;
-import com.switchfullyselfevaluation.eurder.services.dtos.ItemDTO;
-import com.switchfullyselfevaluation.eurder.services.dtos.ItemGroupDTO;
+import com.switchfullyselfevaluation.eurder.service.ItemService;
+
+import com.switchfullyselfevaluation.eurder.service.dto.CreateItemDto;
+
+import com.switchfullyselfevaluation.eurder.service.dto.ItemDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,20 +25,21 @@ public class ItemController {
         this.itemService = itemService;
     }
 
+
+    //POST : STORY 2 - add item as admin
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@RequestHeader(value = "uuid", required = true) String uuidUser,
-                           @RequestBody CreateItemDTO createItemDTO) {
-
-            logger.info("Controller: trying to create new item");
-            itemService.createItem(createItemDTO, uuidUser);
-            logger.info("Controller: item created");
-
+    public void addItem(@RequestHeader(value = "id") String adminId,
+                        @RequestBody CreateItemDto createItemDto) {
+        logger.info("Trying to add item");
+        itemService.addItem(adminId, createItemDto);
+        logger.info("Item added");
     }
 
+    /*//GET
     @GetMapping( produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<ItemDTO> getAllItems() {
+    public List<ItemDto> getAllItems() {
         return itemService.getAllItems();
-    }
+    }*/
 }

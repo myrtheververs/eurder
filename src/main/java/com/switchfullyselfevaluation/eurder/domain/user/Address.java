@@ -1,7 +1,6 @@
 package com.switchfullyselfevaluation.eurder.domain.user;
 
 public class Address {
-
     private final String streetAndNumber;
     private final String postalCode;
     private final String city;
